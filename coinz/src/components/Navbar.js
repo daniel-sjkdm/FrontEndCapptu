@@ -27,7 +27,7 @@ const Navbar = (props) => {
 	return (
 		<AppBar
 			color="primary"
-			position="fixed"
+			position="static"
 			className={classes.main__appbar}
 		>
 			<Toolbar>
