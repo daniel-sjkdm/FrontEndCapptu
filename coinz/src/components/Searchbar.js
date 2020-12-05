@@ -88,8 +88,7 @@ const Searchbar = ({setData}) => {
 				the content based on your interests. <br></br> <br></br>
 			</Typography>
 			<Typography className={classes.text} variant="body1">
-				You can search by date: yyyy/mm/dd <br></br>
-				Or search by date range: yyyy/mm/dd - yyyy/mm/dd
+				Search by date range: yyyy/mm/dd - yyyy/mm/dd
 			</Typography>
 			<InputLabel 
 				style={{ marginTop: "25px" }} 
