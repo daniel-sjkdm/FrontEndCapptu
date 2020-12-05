@@ -4,7 +4,8 @@ import {
 	InputAdornment,
 	Input,
 	InputLabel,
-	Typography
+	Typography,
+	TextField
 } from '@material-ui/core';
 import {
 	makeStyles 
@@ -33,15 +34,12 @@ const useStyles = makeStyles(theme => ({
 
 
 const validateDate = date => {
-	// if (date.match(/\d{4}-\d{2}-\d{2}/g)) {
-	// 	console.log("valid")
-	// 	return true;
-	// }
-	// else {
-	// 	console.log("invalid")
-	// 	return false;
-	// }
-	return true
+	if (date.match(/\d{4}-\d{2}-\d{2}\sto\s\d{4}-\d{2}-\d{2}/g)) {
+		return true;
+	}
+	else {
+		return false;
+	}
 };
 
 
@@ -100,15 +98,17 @@ const Searchbar = ({setData}) => {
 			> 
 				Seach by date 
 			</InputLabel>
-				<Input
+				<TextField
 					id="coinz__input"
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
-					startAdornment={
-						<InputAdornment position="start">
-							<SearchIcon />
-						</InputAdornment>
-					}
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position="start">
+								<SearchIcon />
+							</InputAdornment>
+						)
+					}}
 				/>
 			<Button
 				color="primary"
@@ -117,7 +117,7 @@ const Searchbar = ({setData}) => {
 				onClick={() => query? ( 
 					validateDate(query)? handleSubmit(query) : (
 						setError(true),
-						setErrorMessage("Enter a valid date: yyyy/mm/dd or yyyy/mm/dd to yyyy/mm/dd")
+						setErrorMessage("Enter a valid date range yyyy/mm/dd to yyyy/mm/dd")
 					)
 				) : (
 					setError(true),
