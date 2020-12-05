@@ -1,106 +1,50 @@
 import React from 'react';
 import {
-    TableContainer,
-    Table, 
-    TableHead,
-    TableBody,
-    TableRow,
-    TableCell,
-    Paper,
-    Typography
-} from '@material-ui/core';
-import {
     makeStyles,
     withStyles
 } from '@material-ui/core/styles';
-import { DataTable } from 'react-data-table-component';
-
-
-
-const useStyles = makeStyles(theme => ({
-    table__container: {
-        marginTop: "20px"
-    },
-    text: {
-        marginTop: "20px",
-        color: "#8F7F7F"
-    }
-}));
-
-
-const StyledTableCell = withStyles(theme => ({
-    head: {
-        backgroundColor: "#272727",
-        color: theme.palette.common.white
-    }
-}))(TableCell);
+import MUIDataTable from 'mui-datatables';
 
 
 const columns = [
     {
-        name: "Book",
-        selector: "book"
+        label: "Book", 
+        options: { filter: false, sort: false }
     },
     {
-        name: "Volume",
-        selector: "volume"
+        label: "Created at", 
+        options: { filter: false, sort: false }
     },
     {
-        name: "High",
-        selector: "high"
-    },
+        label: "Volume",
+        options: { filter: false, sort: false }
+    }, 
     {
-        name: "Low",
-        selector: "low"
+        label: "High",
+        options: { filter: false, sort: false }
     },
+    { 
+        label: "Low",
+        options: { filter: false, sort: false }
+    }
 ];
 
+const Tablecoinz = ({data}) => {
 
-const Tablecoinz = ({ data }) => {
-    const classes = useStyles();
     return (
-        <div>
+        <div style={{ marginTop: "50px", marginBottom: "50px" }}>
             {
                 data? (
-                    <TableContainer className={classes.table__container} component={Paper}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <StyledTableCell align="center"> Book  </StyledTableCell>
-                                    <StyledTableCell align="center"> Created at </StyledTableCell>
-                                    <StyledTableCell align="center"> Volume (MXN) </StyledTableCell>
-                                    <StyledTableCell align="center"> High (MXN) </StyledTableCell>
-                                    <StyledTableCell align="center"> Low  (MXN) </StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {
-                                    data.map(item => (
-                                        <TableRow key={item.id}>
-                                            <TableCell align="center"> { item.book } </TableCell>
-                                            <TableCell align="center"> { item.created_at } </TableCell>
-                                            <TableCell align="center"> { item.volume } </TableCell>
-                                            <TableCell align="center"> { item.high } </TableCell>
-                                            <TableCell align="center"> { item.low } </TableCell>
-                                        </TableRow>
-                                        
-                                    ))
-                                }
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                ) : (
-                    <Typography 
-                        className={classes.text} 
-                        variant="h6"
-                    > 
-                        Feed me some coinz! 
-                    </Typography>
-                )
+                    <MUIDataTable
+                        title={"Coinz!"}
+                        data={data.map(item => [ item.book, item.created_at, item.volume, item.high, item.low ])}
+                        columns={columns}
+                    />  
+                ) : ""
             }
         </div>
-    );
-};
+    )
+}
 
 
 export default Tablecoinz;
