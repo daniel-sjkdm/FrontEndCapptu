@@ -43,7 +43,7 @@ const Coin = () => {
         };
         setInterval(() => {
             fetchCoinData();
-        }, 5000)
+        }, 10000)
     }, []);
 
     return (
