@@ -3,7 +3,8 @@ import {
     Card,
     CardContent,
     Typography,
-    makeStyles
+    makeStyles,
+	  CircularProgress
 } from '@material-ui/core';
 import axios from 'axios';
 
@@ -26,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 const Coin = () => {
     const [ coinData, setCoinData ] = useState({});
+		const [ isLoading, setIsLoading ] = useState(true);
     const classes = useStyles();
 
     useEffect(() => {
@@ -34,6 +36,7 @@ const Coin = () => {
                 const response = await axios.get("http://localhost:8000/coinz/api/repeat/");
                 console.log(response)
                 if (response.status === 200) {
+										setIsLoading(false);
                     setCoinData(response.data);
                 }
             }  
@@ -49,7 +52,7 @@ const Coin = () => {
     return (
         <div className={classes.root}>
             {
-                coinData? (
+                coinData && !isLoading? (
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography className={classes.text}> Book: { coinData.book } </Typography>
@@ -63,7 +66,9 @@ const Coin = () => {
                             <Typography className={classes.text}> Bid: { coinData.bid } </Typography>
                         </CardContent>
                     </Card>
-                ) : ""
+                ) : (
+									<CircularProgress color="primary"/>
+								)
             }
         </div>
     )
