@@ -31,9 +31,10 @@ The application is _responsive_, an easy thing to do with Material-UI.
 
 **Make sure to first start the django server to avoid an API call error**
 
-Clone the repository:
+Clone the repository and enter the project's directory:
 ```sh
 $ git clone https://github.com/daniel-sjkdm/FrontEndCapptu.git
+$ cd coinz
 ```
 
 Install the dependencies:
